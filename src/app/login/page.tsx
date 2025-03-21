@@ -1,7 +1,15 @@
 import { AuthPanel } from "@/components/auth-panel";
 import { LoginForm } from "@/components/login-form";
+import { auth } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
 export default async function Login() {
+  const session = await auth();
+
+  if (session) {
+    redirect("/");
+  }
+
   return (
     <div className="min-h-screen">
       <div className="mx-auto w-full max-w-7xl overflow-hidden">
@@ -14,7 +22,7 @@ export default async function Login() {
             <LoginForm />
           </div>
         </div>
-        <AuthPanel />
+        <AuthPanel session={session} />
       </div>
     </div>
   );
