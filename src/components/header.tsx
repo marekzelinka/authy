@@ -11,21 +11,22 @@ export async function Header() {
         <div className="flex gap-4">
           <NavLink
             href="/"
-            className="text-foreground/80 hover:text-foreground aria-[current=page]:text-foreground"
+            end
+            className="text-muted-foreground hover:text-foreground aria-[current=page]:text-foreground aria-[current=page]:hover:text-foreground/80"
           >
             Home
           </NavLink>
           {session ? (
             <NavLink
               href="/dashboard"
-              className="text-foreground/80 hover:text-foreground aria-[current=page]:text-foreground"
+              className="text-muted-foreground hover:text-foreground aria-[current=page]:text-foreground aria-[current=page]:hover:text-foreground/80"
             >
               Dashboard
             </NavLink>
           ) : (
             <NavLink
               href="/login"
-              className="text-foreground/80 hover:text-foreground aria-[current=page]:text-foreground"
+              className="text-muted-foreground hover:text-foreground aria-[current=page]:text-foreground aria-[current=page]:hover:text-foreground/80"
             >
               Login
             </NavLink>
