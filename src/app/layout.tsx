@@ -1,3 +1,4 @@
+import { Header } from "@/components/header";
 import { geistMono, geistSans } from "@/fonts";
 import "@/globals.css";
 import { cn } from "@/lib/utils";
@@ -19,7 +20,10 @@ export default function RootLayout({
       lang="en"
       className={cn(geistSans.variable, geistMono.variable, "antialiased")}
     >
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
