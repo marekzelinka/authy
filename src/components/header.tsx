@@ -1,6 +1,7 @@
-import { auth } from "@/lib/auth";
+import { auth, signOut } from "@/lib/auth";
 import { cn } from "@/lib/utils";
 import { NavLink } from "./nav-link";
+import { Button } from "./ui/button";
 
 export async function Header() {
   const session = await auth();
@@ -8,7 +9,7 @@ export async function Header() {
   return (
     <div className="w-full border-b border-gray-200 bg-white p-4">
       <div className="mx-auto flex max-w-7xl items-center justify-between">
-        <div className="flex gap-4">
+        <div className="flex items-center gap-4">
           <NavLink
             href="/"
             end
@@ -17,12 +18,25 @@ export async function Header() {
             Home
           </NavLink>
           {session ? (
-            <NavLink
-              href="/dashboard"
-              className="text-muted-foreground hover:text-foreground aria-[current=page]:text-foreground aria-[current=page]:hover:text-foreground/80"
-            >
-              Dashboard
-            </NavLink>
+            <>
+              <NavLink
+                href="/dashboard"
+                className="text-muted-foreground hover:text-foreground aria-[current=page]:text-foreground aria-[current=page]:hover:text-foreground/80"
+              >
+                Dashboard
+              </NavLink>
+              <form
+                action={async () => {
+                  "use server";
+
+                  await signOut();
+                }}
+              >
+                <Button type="submit" variant="ghost">
+                  Logout
+                </Button>
+              </form>
+            </>
           ) : (
             <NavLink
               href="/login"
